@@ -33,10 +33,12 @@
         .date-name {
             border-bottom: 1px solid #dddddd;
             padding: 12px 0px;
-            &.today {
+            &.today span{
                 background-color: lightcoral;
                 border-color: lightcoral;
                 color: white;
+                padding: 6px;
+                border-radius: 100%;
             }
         }
     }

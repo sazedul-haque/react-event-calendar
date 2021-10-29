@@ -42,7 +42,7 @@ export const Month: React.FC<MonthPropTypes> = ({ currentTime }: MonthPropTypes)
 				}`}
 				onClick={() => console.log(day)}
 			>
-				{formatDate(day, 'D')}
+				<span>{formatDate(day, 'D')}</span>
 			</div>
 		);
 	};

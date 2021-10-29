@@ -34,7 +34,7 @@ export const Week: React.FC<WeekPropTypes> = ({ currentTime }: WeekPropTypes) =>
 		return (
 			<div key={`${day.get('month')}-${day.get('date')}`} className='date-item'>
 				<div className={`date-name ${day.isSame(createDate(), 'date') ? 'today' : ''}`}>
-					{formatDate(day, 'ddd')} {formatDate(day, 'D')}
+					{formatDate(day, 'ddd')} <span>{formatDate(day, 'D')}</span>
 				</div>
 				<div className='hours'>{renderHours(day, false)}</div>
 			</div>
