@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createDate, formatDate } from '../../plugins';
 import { Month } from '../monthView';
 import { Week } from '../weekView';
+import { Day } from '../dayView';
 import './Home.scss';
 
 export const Home: React.FC = () => {
@@ -29,7 +30,7 @@ export const Home: React.FC = () => {
 					<select onChange={handleTypeChange} value={type}>
 						<option value='month'>Month</option>
 						<option value='week'>Week</option>
-						<option value='date'>Day</option>
+						<option value='day'>Day</option>
 					</select>
 					<button onClick={handleNextClick}>Next</button>
 				</div>
@@ -38,6 +39,7 @@ export const Home: React.FC = () => {
 			<div className='main-content'>
 				{type === 'month' && <Month currentTime={currentTime} />}
 				{type === 'week' && <Week currentTime={currentTime} />}
+				{type === 'day' && <Day currentTime={currentTime} />}
 			</div>
 		</div>
 	);
