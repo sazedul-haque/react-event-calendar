@@ -1,0 +1,69 @@
+.week-container {
+    height: 100%;
+    display: flex;
+    .sidebar {
+        height: calc(100% - 42px);
+        min-width: 80px;
+        border-left: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        text-align: center;
+        position: relative;
+        .title {
+            padding: 12px 0px;
+            border-bottom: 1px solid #dddddd;
+        }
+    }
+    .week-content {
+        width: 100%;
+    }
+
+    .days {
+        display: flex;
+        flex-wrap: wrap;
+        height: calc(100% - 42px);
+        padding: 0;
+        margin: 0;
+        border-left: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        .date-item {
+            flex-basis: calc((100% - 7px) / 7);
+            text-align: center;
+            border-right: 1px solid #dddddd;
+        }
+        .date-name {
+            border-bottom: 1px solid #dddddd;
+            padding: 12px 0px;
+            &.today {
+                background-color: lightcoral;
+                border-color: lightcoral;
+                color: white;
+            }
+        }
+    }
+    
+    .hours {
+        height: calc(100% - 82px);
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0px;
+        .hour {
+            flex-grow: 1;
+            border-bottom: 1px solid #dddddd;
+            font-size: 12px;
+            color: #acacac;
+            &:first-child {
+                border-top: 1px solid #dddddd;
+            }
+            &.for-sidebar {
+                border: none;
+                margin-top: -8px;
+                &:last-child {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 14px;
+                }
+            }
+        }
+    }
+}
+

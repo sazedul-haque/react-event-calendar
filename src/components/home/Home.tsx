@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createDate, formatDate } from '../../plugins';
 import { Month } from '../monthView';
+import { Week } from '../weekView';
 import './Home.scss';
 
 export const Home: React.FC = () => {
@@ -22,7 +23,7 @@ export const Home: React.FC = () => {
 	return (
 		<div className='home-container'>
 			<div className='header'>
-				<div>{formatDate(currentTime, 'YYYY-MMM-DD')}</div>
+				<div>{formatDate(currentTime, 'MMMM YYYY')}</div>
 				<div className='controllers'>
 					<button onClick={handlePrevClick}>Prev</button>
 					<select onChange={handleTypeChange} value={type}>
@@ -35,7 +36,8 @@ export const Home: React.FC = () => {
 				<button onClick={() => setCurrentTime(createDate())}>Today</button>
 			</div>
 			<div className='main-content'>
-				<Month currentTime={currentTime} />
+				{type === 'month' && <Month currentTime={currentTime} />}
+				{type === 'week' && <Week currentTime={currentTime} />}
 			</div>
 		</div>
 	);
