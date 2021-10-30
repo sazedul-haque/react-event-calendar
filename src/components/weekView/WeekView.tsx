@@ -10,33 +10,44 @@ export const Week: React.FC<WeekPropTypes> = ({ currentTime }: WeekPropTypes) =>
 		setSelectedWeek(currentTime);
 	}, [currentTime]);
 
-	const renderSidebar = () => {
-		return (
-			<div className='sidebar'>
-				<div className='title'>Hours</div>
-				<div className='hours'>{renderHours(createDate(), true)}</div>
+	const renderDateNames = () => {
+		const names = [];
+
+		names.push(
+			<div key={7} className='name sidebar'>
+				Hours
 			</div>
 		);
-	};
-
-	const renderDays = () => {
-		const days = [];
 
 		for (let i = 0; i <= 6; i++) {
 			const date = selectedWeek.startOf('w').add(i, 'day');
-			days.push(renderDay(date));
+			names.push(
+				<div key={i} className={`name ${date.isSame(createDate(), 'date') ? 'today' : ''}`}>
+					{formatDate(date, 'ddd')} <span>{formatDate(date, 'D')}</span>
+				</div>
+			);
+		}
+
+		return names;
+	};
+
+	const renderDateList = () => {
+		const days = [];
+
+		days.push(renderDay(7, createDate(), true)); // For Sidebar
+
+		for (let i = 0; i <= 6; i++) {
+			const date = selectedWeek.startOf('w').add(i, 'day');
+			days.push(renderDay(i, date, false));
 		}
 
 		return days;
 	};
 
-	const renderDay = (day: Dayjs) => {
+	const renderDay = (idx: number, day: Dayjs, isSidebar: boolean) => {
 		return (
-			<div key={`${day.get('month')}-${day.get('date')}`} className='date-item'>
-				<div className={`date-name ${day.isSame(createDate(), 'date') ? 'today' : ''}`}>
-					{formatDate(day, 'ddd')} <span>{formatDate(day, 'D')}</span>
-				</div>
-				<div className='hours'>{renderHours(day, false)}</div>
+			<div key={idx} className={`date-item ${isSidebar ? 'sidebar' : ''}`}>
+				{renderHours(day, isSidebar)}
 			</div>
 		);
 	};
@@ -47,23 +58,25 @@ export const Week: React.FC<WeekPropTypes> = ({ currentTime }: WeekPropTypes) =>
 
 		for (let i = 0; i < totalHours; i++) {
 			const hour = day.startOf('date').add(i, 'h');
-			hourList.push(
-				<div key={i} className={`hour ${isSidebar ? 'for-sidebar' : ''}`} onClick={() => console.log(hour)}>
-					{isSidebar && formatDate(hour, 'hh A')}
-				</div>
-			);
+
+			hourList.push(renderHour(i, hour, isSidebar));
 		}
 
 		return hourList;
 	};
 
+	const renderHour = (idx: number, hour: Dayjs, isSidebar: boolean) => {
+		return (
+			<div key={idx} className={`hour ${isSidebar ? 'sidebar' : ''}`} onClick={() => console.log(hour)}>
+				<div className='hour-content'>{isSidebar && formatDate(hour, 'hh A')}</div>
+			</div>
+		);
+	};
+
 	return (
 		<div className='week-container'>
-			{renderSidebar()}
-
-			<div className='week-content'>
-				<div className='days'>{renderDays()}</div>
-			</div>
+			<div className='date-names'>{renderDateNames()}</div>
+			<div className='date-list'>{renderDateList()}</div>
 		</div>
 	);
 };

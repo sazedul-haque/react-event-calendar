@@ -10,6 +10,21 @@ export const Month: React.FC<MonthPropTypes> = ({ currentTime }: MonthPropTypes)
 		setSelectedMonth(currentTime);
 	}, [currentTime]);
 
+	const renderDateNames = () => {
+		const names = [];
+
+		for (let i = 0; i <= 6; i++) {
+			const date = selectedMonth.startOf('w').add(i, 'day');
+			names.push(
+				<div key={i} className='name'>
+					{formatDate(date, 'ddd')}
+				</div>
+			);
+		}
+
+		return names;
+	};
+
 	const renderDays = () => {
 		const days = [];
 		const dayOfFirstDate = selectedMonth.startOf('M').get('d');
@@ -49,16 +64,8 @@ export const Month: React.FC<MonthPropTypes> = ({ currentTime }: MonthPropTypes)
 
 	return (
 		<div className='container'>
-			<ul className='weekDays'>
-				<li>Sun</li>
-				<li>Mon</li>
-				<li>Tue</li>
-				<li>Wed</li>
-				<li>Thu</li>
-				<li>Fri</li>
-				<li>Sat</li>
-			</ul>
-			<div className='days'>{renderDays()}</div>
+			<div className='date-names'>{renderDateNames()}</div>
+			<div className='date-list'>{renderDays()}</div>
 		</div>
 	);
 };

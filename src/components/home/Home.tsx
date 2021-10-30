@@ -4,21 +4,23 @@ import { Month } from '../monthView';
 import { Week } from '../weekView';
 import { Day } from '../dayView';
 import './Home.scss';
+import { OpUnitType } from 'dayjs';
 
 export const Home: React.FC = () => {
-	const [currentTime, setCurrentTime] = useState(createDate());
-	const [type, setType] = useState('month');
+	const [currentTime, setCurrentTime] = useState(createDate().startOf('month'));
+	const [type, setType] = useState<OpUnitType>('month');
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleTypeChange = (e: any) => {
 		setType(e.target.value);
+		setCurrentTime(createDate().startOf(e.target.value));
 	};
 
 	const handlePrevClick = () => {
-		setCurrentTime(currentTime.subtract(1, type));
+		setCurrentTime(currentTime.startOf(type).subtract(1, type));
 	};
 	const handleNextClick = () => {
-		setCurrentTime(currentTime.add(1, type));
+		setCurrentTime(currentTime.startOf(type).add(1, type));
 	};
 
 	return (

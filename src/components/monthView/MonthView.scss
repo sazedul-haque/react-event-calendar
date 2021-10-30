@@ -1,25 +1,19 @@
 .container {
     height: 100%;
-    .weekDays {
+    .date-names {
         display: flex;
-        justify-content: space-between;
-        padding: 0;
-        margin: 0;
-        border: 1px solid #dddddd;
-        border-top: none;
-        li {
-            list-style: none;
-            text-align: center;
+        flex-wrap: wrap;
+        border-left: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        .name {
             width: 100%;
-            font-size: 14px;
+            max-width: calc((100% - 7px) / 7);
+            text-align: center;
             border-right: 1px solid #dddddd;
-            padding: 12px;
-            &:last-child{
-                border-right: none;
-            }
+            padding: 12px 0px;
         }
     }
-    .days {
+    .date-list {
         display: flex;
         flex-wrap: wrap;
         height: calc(100% - 42px);
@@ -36,13 +30,20 @@
             &.current-month {
                 color: #333333;
             }
-            &.today span{
+            span {
                 display: inline-block;
+                height: 30px;
+                width: 30px;
+                text-align: center;
+                line-height: 2.2;
+                // border: 1px solid #dddddd;
+                border-radius: 100%;
+                margin-left: 5px;
+            }
+            &.today span {
                 background-color: lightcoral;
                 border-color: lightcoral;
                 color: white;
-                padding: 6px;
-                border-radius: 100%;
             }
         }
     }
