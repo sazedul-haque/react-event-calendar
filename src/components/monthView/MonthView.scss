@@ -1,0 +1,51 @@
+.container {
+    height: 100%;
+    .date-names {
+        display: flex;
+        flex-wrap: wrap;
+        border-left: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        .name {
+            width: 100%;
+            max-width: calc((100% - 7px) / 7);
+            text-align: center;
+            border-right: 1px solid #dddddd;
+            padding: 12px 0px;
+        }
+    }
+    .date-list {
+        display: flex;
+        flex-wrap: wrap;
+        height: calc(100% - 42px);
+        padding: 0;
+        margin: 0;
+        border-left: 1px solid #dddddd;
+        .date-item {
+            flex-basis: calc((100% - 77px) / 7);
+            text-align: center;
+            border-right: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            color: #acacac;
+            padding: 5px;
+            &.current-month {
+                color: #333333;
+            }
+            span {
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+                text-align: center;
+                line-height: 2.2;
+                // border: 1px solid #dddddd;
+                border-radius: 100%;
+                margin-left: 5px;
+            }
+            &.today span {
+                background-color: lightcoral;
+                border-color: lightcoral;
+                color: white;
+            }
+        }
+    }
+}
+

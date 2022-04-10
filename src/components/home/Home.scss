@@ -1,0 +1,22 @@
+.home-container {
+    height: 900px;
+    overflow: auto;
+    padding: 0px 10px;
+    font-size: 14px;
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0px;
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .controllers {
+        display: flex;
+    }
+
+    .main-content {
+        height: calc(100% - 42px);
+        // overflow: auto;
+    }
+}
